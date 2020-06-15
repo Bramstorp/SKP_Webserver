@@ -1,0 +1,79 @@
+{%  extends 'skpcore/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <div class="list-group padder">
+        <a href="{% url 'husregler' %}" class="list-group-item text-dark"><i class="fas fa-home fa-fw"></i> Hus Regler</a>
+        <a href="{% url 'info' %}" class="list-group-item text-dark"><i class="fas fa-info fa-fw"></i> Info / Links</a>
+        <a href="{% url 'idekasse' %}" class="list-group-item text-dark"><i class="fas fa-lightbulb fa-fw"></i> Ide Kasse</a>
+        <a href="#" class="list-group-item text-dark"><i class="fas fa-map-signs fa-fw"></i> Find Vej</a>
+        <a href="#" class="list-group-item text-dark"><i class="fas fa-chalkboard-teacher fa-fw"></i> Fag</a>
+      </div>
+      
+      <div class="list-group pt-4">
+        <a href="#" class="list-group-item text-dark">SKP Service</a>
+      </div>
+
+      <div class="list-group pt-2">
+        <a href="#" class="list-group-item text-dark">SKP Tech</a>
+      </div>
+
+      <div class="list-group pt-2">
+        <a href="#" class="list-group-item text-dark">Sammenhold</a>
+      </div>
+    
+    </div>
+
+    <div class="col-lg-9">
+      <h1 style="padding-top: 35px;">{{blog.title}}</h1>
+
+      <p class="lead">
+        by
+        <a href="#">{{blog.bruger}}</a>
+      </p>
+      <hr>
+      <p>{{blog.postdate}}</p>
+      <hr>
+      <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+      <hr>
+      <p>{{blog.blog_text}}</p>
+      
+      <hr>
+
+      <div class="card my-4">
+        <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      {% for y in blog.blogcomment.all %}
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="{{y.bruger.profile_pic.url}}" style="max-width: 50px; max-height: 50px;" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">{{y.bruger.name}}</h5>
+          {{y.comment}}
+        </div>
+      </div>
+      {% endfor %}
+      <br>
+    </div>  
+
+  </div>
+</div>
+
+{% endblock %}

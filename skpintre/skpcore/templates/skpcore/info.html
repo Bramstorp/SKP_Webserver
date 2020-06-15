@@ -1,0 +1,46 @@
+{%  extends 'skpcore/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <div class="list-group padder">
+        <a href="{% url 'husregler' %}" class="list-group-item text-dark"><i class="fas fa-home fa-fw"></i> Hus Regler</a>
+        <a href="{% url 'info' %}" class="list-group-item text-dark"><i class="fas fa-info fa-fw"></i> Info / Links</a>
+        <a href="{% url 'idekasse' %}" class="list-group-item text-dark"><i class="fas fa-lightbulb fa-fw"></i> Ide Kasse</a>
+        <a href="#" class="list-group-item text-dark"><i class="fas fa-map-signs fa-fw"></i> Find Vej</a>
+        <a href="#" class="list-group-item text-dark"><i class="fas fa-chalkboard-teacher fa-fw"></i> Fag</a>
+      </div>
+      
+      <div class="list-group pt-4">
+        <a href="#" class="list-group-item text-dark">SKP Service</a>
+      </div>
+
+      <div class="list-group pt-2">
+        <a href="#" class="list-group-item text-dark">SKP Tech</a>
+      </div>
+
+      <div class="list-group pt-2">
+        <a href="#" class="list-group-item text-dark">Sammenhold</a>
+      </div>
+    
+    </div>
+
+    <div class="col-lg-9">
+    <h1 class="nyt">Info / Links</h1>
+
+    {% for x in textform %}
+      <h6 class="nyt">{{ x.text|linebreaks }}</h6>
+    {% endfor %}
+    </div>
+  
+  </div>
+</div>
+
+{% endblock %}
