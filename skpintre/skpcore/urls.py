@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+#this is all the routes of the site and the view of that part
 urlpatterns = [
     path("", views.homepage, name="homepage"), 
     path("husregler/", views.husregler, name="husregler"), 

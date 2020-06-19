@@ -4,6 +4,7 @@ from django.contrib import admin
 
 from .models import *
 
+# shows models in the admin panel
 admin.site.register(Husreglerform)
 admin.site.register(Bruger)
 admin.site.register(Senestenyt)
