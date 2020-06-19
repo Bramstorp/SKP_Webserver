@@ -53,10 +53,13 @@
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
           <form>
-            <div class="form-group">
-              <textarea class="form-control" rows="3"></textarea>
+            
+            {% csrf_token %}
+            <div class="form-group" action="" method="POST">
+              {{form.comment}}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+          
           </form>
         </div>
       </div>

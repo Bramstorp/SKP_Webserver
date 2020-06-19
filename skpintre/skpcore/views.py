@@ -73,8 +73,21 @@ def idekasse(request):
 
 def ide(request,pk):
     blog = Blogpost.objects.get(id=pk)
+    form = Submitcomment(request.POST)
 
-    context = {"blog":blog}
+    if request.method == "POST":
+        if form.is_valid():
+            comment = form.cleaned_data.get("comment")
+
+            comment_field = Blogcomment(
+                bruger = request.user.bruger,
+                comment = comment
+            )
+            comment_field.save()
+
+            return redidrect("ide")
+
+    context = {"blog":blog, "form":form}
     return render(request, "skpcore/ide.html", context)
 
 def info(request):

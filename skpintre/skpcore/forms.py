@@ -14,3 +14,10 @@ class HusreglForm(ModelForm):
 	class Meta:
 		model = Husreglerform
 		fields = "__all__"
+
+class Submitcomment(forms.Form):
+	comment = forms.CharField(widget=forms.Textarea(attrs={
+		"class": "form-control",
+		"placeholder": "Comment",
+		"rows": "3"
+	}))
