@@ -31,21 +31,21 @@ class Senestenyt(models.Model):
     def __str__(self):
         return str(self.bruger)
 
-class Blogcomment(models.Model):
-    bruger = models.ForeignKey(Bruger, on_delete=models.SET_NULL, null=True)
-    comment = models.TextField(max_length=200, null=True)
-    postdate = models.DateTimeField(auto_now_add=True, null=True)
-
-    def __str__(self):
-        return str(self.bruger)
-
 class Blogpost(models.Model):
     title = models.CharField(max_length=1000, null=True)
     bruger = models.ForeignKey(Bruger, on_delete=models.SET_NULL, null=True)
     postdate = models.DateTimeField(auto_now_add=True, null=True)
     blog_picture = models.CharField(max_length=1000, null=True)
     blog_text = models.CharField(max_length=1000, null=True)
-    blogcomment = models.ManyToManyField(Blogcomment, blank=True)
 
     def __str__(self):
         return str(self.title)
+
+class Blogcomment(models.Model):
+    blog = models.ForeignKey(Blogpost, on_delete=models.SET_NULL, null=True)
+    bruger = models.ForeignKey(Bruger, on_delete=models.SET_NULL, null=True)
+    comment = models.TextField(max_length=200, null=True)
+    postdate = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return str(self.bruger)

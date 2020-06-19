@@ -52,27 +52,30 @@
       <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-          <form>
+          
+          <form method="POST">
             
             {% csrf_token %}
-            <div class="form-group" action="" method="POST">
+            <div class="form-group">
               {{form.comment}}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           
           </form>
+
         </div>
       </div>
 
-      {% for y in blog.blogcomment.all %}
+      {% for x in blogcomment.all %}
       <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="{{y.bruger.profile_pic.url}}" style="max-width: 50px; max-height: 50px;" alt="">
+        <img class="d-flex mr-3 rounded-circle" src="{{x.bruger.profile_pic.url}}" style="max-width: 50px; max-height: 50px;" alt="">
         <div class="media-body">
-          <h5 class="mt-0">{{y.bruger.name}}</h5>
-          {{y.comment}}
+          <h5 class="mt-0">{{x.bruger.name}}</h5>
+          {{x.comment}}
         </div>
       </div>
       {% endfor %}
+
       <br>
     </div>  
 

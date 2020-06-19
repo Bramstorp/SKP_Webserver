@@ -17,7 +17,7 @@ from django.contrib.auth.models import Group
 from django.views.generic import View
  
 # Create your views here.
-from .forms import CreateUserForm
+from .forms import CreateUserForm, Submitcomment
 from .models import *
 
 def homepage(request):
@@ -73,6 +73,7 @@ def idekasse(request):
 
 def ide(request,pk):
     blog = Blogpost.objects.get(id=pk)
+    blogcomment = blog.blogcomment_set.all()
     form = Submitcomment(request.POST)
 
     if request.method == "POST":
@@ -81,13 +82,15 @@ def ide(request,pk):
 
             comment_field = Blogcomment(
                 bruger = request.user.bruger,
-                comment = comment
+                comment = comment,
+                blog = blog
             )
             comment_field.save()
+            blog.save()
 
-            return redidrect("ide")
+            return redirect("idekasse")
 
-    context = {"blog":blog, "form":form}
+    context = {"blog":blog, "form":form, "blogcomment":blogcomment}
     return render(request, "skpcore/ide.html", context)
 
 def info(request):
